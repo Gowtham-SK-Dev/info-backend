@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
-    "build": "esbuild src/index.ts --platform=node --bundle --format=esm --outdir=dist --external:express --external:cors --external:helmet --external:compression --external:dotenv",
-    "start": "node dist/index.js"
+  "dev": "ts-node-dev src/index.ts",
+  "build": "tsc",
+  "start": "node dist/index.js"
   },
   "dependencies": {
     "compression": "^1.8.1",
@@ -17,8 +17,8 @@
     "zod": "^4.1.11"
   },
   "engines": {
-  "node": "20.x",
-  "npm": "10.x"
+    "node": "20.x",
+    "npm": "10.x"
   },
   "devDependencies": {
     "@types/compression": "^1.8.1",
