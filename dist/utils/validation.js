@@ -14,21 +14,23 @@ const validateContactForm = (req, res, next) => {
         req.body = validatedData;
         next();
     }
-    catch (error) {
-        if (error instanceof zod_1.z.ZodError) {
-            res.status(400).json({
+    catch (err) {
+        if (err instanceof zod_1.z.ZodError) {
+            return res.status(400).json({
                 success: false,
-                message: "Validation error",
-                errors: error.errors.map((err) => ({
-                    field: err.path.join("."),
-                    message: err.message,
-                })),
+                errors: err.errors,
+            });
+        }
+        else if (err instanceof Error) {
+            return res.status(500).json({
+                success: false,
+                errors: [{ message: err.message }],
             });
         }
         else {
-            res.status(400).json({
+            return res.status(500).json({
                 success: false,
-                message: "Invalid request data",
+                errors: [{ message: "Unknown validation error" }],
             });
         }
     }

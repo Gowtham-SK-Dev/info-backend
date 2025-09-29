@@ -7,12 +7,12 @@ exports.contactController = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const createEmailTransporter = () => {
     return nodemailer_1.default.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number.parseInt(process.env.SMTP_PORT || "465"),
+        host: process.env.SMTP_HOST || "mail.infosensetechnologies.com",
+        port: Number(process.env.SMTP_PORT || 465),
         secure: true,
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            user: process.env.EMAIL_USER || "support@infosensetechnologies.com",
+            pass: process.env.EMAIL_PASS || "Supp0rt!nfosense",
         },
     });
 };
